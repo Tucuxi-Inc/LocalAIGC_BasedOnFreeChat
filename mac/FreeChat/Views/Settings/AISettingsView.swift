@@ -7,10 +7,12 @@
 
 import Combine
 import SwiftUI
+import Foundation
 
 struct AISettingsView: View {
   static let title = "Intelligence"
   private static let customizeModelsId = "customizeModels"
+  private static let browseModelGalleryId = "browseModelGallery"
   static let remoteModelOption = "remoteModelOption"
 
   private let serverHealthTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
@@ -35,6 +37,7 @@ struct AISettingsView: View {
 
   @State var pickedModel: String?  // Picker selection
   @State var customizeModels = false  // Show add remove models
+  @State var browseModelGallery = false  // Show model gallery
   @State var editRemoteModel = false  // Show remote model server
   @State var editSystemPrompt = false
   @State var revealAdvanced = false
@@ -42,6 +45,7 @@ struct AISettingsView: View {
   @State var inputServerHost: String = ""
   @State var inputServerPort: String = ""
   @State var serverHealthScore: Double = -1
+  @State var showNewModelBadge: Bool = true
 
   @StateObject var gpu = GPU.shared
 
@@ -102,28 +106,21 @@ struct AISettingsView: View {
 
         Divider().tag(nil as String?)
         Text("Remote Model (Advanced)").tag(AISettingsView.remoteModelOption as String?)
+        
+        Divider().tag(nil as String?)
+        Text("Browse Model Gallery...")
+          .tag(AISettingsView.browseModelGalleryId as String?)
+          .badge(showNewModelBadge ? "New" : "")
         Text("Add or Remove Models...").tag(AISettingsView.customizeModelsId as String?)
-      }.onReceive(Just(pickedModel)) { _ in
-        switch pickedModel {
-        case AISettingsView.customizeModelsId:
-          customizeModels = true
-          editRemoteModel = false
-        case AISettingsView.remoteModelOption:
-          customizeModels = false
-          editRemoteModel = true
-          selectedModelId = AISettingsView.remoteModelOption
-        case .some(let pickedModelValue):
-          customizeModels = false
-          editRemoteModel = false
-          selectedModelId = pickedModelValue
-        default: break
-        }
       }
       .onChange(of: pickedModel) { newValue in
         switch pickedModel {
         case AISettingsView.customizeModelsId:
           customizeModels = true
           editRemoteModel = false
+        case AISettingsView.browseModelGalleryId:
+          browseModelGallery = true
+          showNewModelBadge = false
         case AISettingsView.remoteModelOption:
           customizeModels = false
           editRemoteModel = true
@@ -134,7 +131,6 @@ struct AISettingsView: View {
           selectedModelId = pickedModelValue
         default: break
         }
-
       }
 
       if !editRemoteModel {
@@ -307,8 +303,15 @@ struct AISettingsView: View {
       }
     }
     .formStyle(.grouped)
-    .sheet(isPresented: $customizeModels, onDismiss: { pickedModel = selectedModelId }) {
+    .sheet(isPresented: $customizeModels) {
+      pickedModel = selectedModelId
+    } content: {
       EditModels(selectedModelId: $selectedModelId)
+    }
+    .sheet(isPresented: $browseModelGallery) { 
+      pickedModel = selectedModelId
+    } content: {
+      ModelGalleryView()
     }
     .sheet(isPresented: $editSystemPrompt) {
       EditSystemPrompt()

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885E3DE42DC9CE1000747838 /* ModelGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */; };
 		A1156D312AD09FDD00081313 /* PromptTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1156D302AD09FDD00081313 /* PromptTemplateTests.swift */; };
 		A117219C2A7D7B70003B0358 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = A117219B2A7D7B70003B0358 /* MarkdownUI */; };
 		A12B52DE2AA5228100658707 /* EditModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52DD2AA5228100658707 /* EditModels.swift */; };
@@ -115,6 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGalleryView.swift; sourceTree = "<group>"; };
 		A1156D302AD09FDD00081313 /* PromptTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateTests.swift; sourceTree = "<group>"; };
 		A12B52DD2AA5228100658707 /* EditModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModels.swift; sourceTree = "<group>"; };
 		A12B52E32AA5A99E00658707 /* EditSystemPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSystemPrompt.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		A15D50D02A7F49CD00FC1681 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */,
 				A19AA51F2AA66768009D9573 /* ConversationView */,
 				A13C8C5E2A8FF02500EC18D8 /* Markdown */,
 				A1F617272A782AA100F2048C /* ContentView.swift */,
@@ -547,6 +550,7 @@
 				A17A2E192A79A006006CDD90 /* LlamaServer.swift in Sources */,
 				A1F617582A7836AE00F2048C /* Message+Extensions.swift in Sources */,
 				A13C8C682A902A1200EC18D8 /* CGKeycode+Extensions.swift in Sources */,
+				885E3DE42DC9CE1000747838 /* ModelGalleryView.swift in Sources */,
 				A15D50D22A7F539800FC1681 /* NavList.swift in Sources */,
 				A1D4B49D2B9A780B00B9C4BE /* AgentDefaults.swift in Sources */,
 				A1F617262A782AA100F2048C /* FreeChat.swift in Sources */,

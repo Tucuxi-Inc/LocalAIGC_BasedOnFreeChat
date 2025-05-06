@@ -16,6 +16,7 @@ struct WelcomeSheet: View {
   
   @Binding var isPresented: Bool
   @State var showModels = false
+  @State var showModelGallery = false
   
   @Environment(\.managedObjectContext) private var viewContext
   @AppStorage("selectedModelId") private var selectedModelId: String?
@@ -74,10 +75,17 @@ struct WelcomeSheet: View {
         .padding(.top, 6)
         .padding(.horizontal)
         
+        Button("Browse model gallery") {
+          showModelGallery = true
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.large)
+        .padding(.top, 10)
+        
         Button("Load custom model") {
           showModels = true
         }.buttonStyle(.link)
-          .padding(.top, 4)
+          .padding(.top, 8)
           .font(.callout)
       } else {
 
@@ -89,6 +97,9 @@ struct WelcomeSheet: View {
     .padding(.horizontal, 60)
     .sheet(isPresented: $showModels) {
       EditModels(selectedModelId: $selectedModelId)
+    }
+    .sheet(isPresented: $showModelGallery) {
+      ModelGalleryView()
     }
   }
   
