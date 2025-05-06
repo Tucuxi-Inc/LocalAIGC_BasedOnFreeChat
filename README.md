@@ -1,72 +1,119 @@
-<p align="center" width="100%">
-<img width="120" alt="FreeChat app icon" src="https://github.com/psugihara/FreeChat/assets/282016/26be9d7a-fc18-476d-b0eb-13c4a37cfc54">
-</p>
+# Local AI GC
 
-<h1 align="center">FreeChat</h1>
+<div align="center">
+  <img src="LocalAIGC/Assets.xcassets/AppIcon.appiconset/Local%20AI%20GC%20512.png" alt="Local AI GC Logo" width="200">
+  <h1>Local AI GC</h1>
+  <p><strong>Privacy-First AI Chat for macOS</strong></p>
+</div>
 
-Chat with LLMs on your Mac without installing any other software. Every conversation is saved locally, all conversations happen offline.
+Local AI GC is a native macOS application that lets you chat with AI models locally on your Mac, without sending your data to external servers. It's based on the open-source [FreeChat](https://github.com/psugihara/FreeChat) project.
 
-- Customize persona and expertise by changing the system prompt
-- Try any llama.cpp compatible model
-- No internet connection required, all local (with the option to connect to a remote model)
+## Features
 
-https://github.com/psugihara/FreeChat/assets/282016/fd546e39-7657-4ccd-a44f-0b872547a629
+- **100% Local Processing**: All AI processing happens on your device - no data leaves your computer
+- **Support for GGUF Models**: Compatible with Llama, Mistral, and other models in GGUF format
+- **Intuitive macOS Interface**: Native experience with macOS design patterns
+- **Easy Model Management**: Download and switch between different models
+- **Customizable System Prompts**: Tailor the AI's behavior to your needs
+- **Keyboard Shortcuts**: Quick access to create new conversations
 
-## Install
+## Getting Started
 
-Join the TestFlight beta: https://6032904148827.gumroad.com/l/freechat-beta
+1. Download and install Local AI GC
+2. Launch the app
+3. Download a model or load your own custom model
+4. Start chatting with your local AI!
 
-Or download on the Mac App Store: https://apps.apple.com/us/app/freechat/id6458534902
+## Keyboard Shortcuts
 
-Or build from source via "Archive" in Xcode after completing dev setup below.
+| Action | Shortcut |
+|--------|----------|
+| New Conversation | ⌘N |
+| Delete Conversation | ⌫ (Delete) |
+| Focus on Message Input | ⌘L |
+| Send Message | Return/Enter (when input is focused) |
+| Copy Selected Message | ⌘C (with message selected) |
+| Summon Application | Customizable via Preferences |
 
-## Goals
+## Available Models
 
-The main goal of FreeChat is to make open, local, private models accessible to more people.
+Local AI GC provides a curated collection of high-quality models that you can download directly within the application. These models are organized by size and capabilities to help you choose the right one for your needs:
 
-FreeChat is a native LLM appliance for macOS that runs completely locally. Download it and ask your LLM a question without doing any configuration. A local/llama version of OpenAI's chat without login or tracking. You should be able to install from the Mac App Store and use it immediatly.
+### Small Models (1-2GB)
+- **Gemma-3-1B-Instruct** (0.80 GB)
+  - Provider: Google, Context: 128K
+  - Capabilities: Multilingual, Fast
+  - A compact Google model ideal for quick responses with extended context
 
-- No config. Usable by people who haven't heard of models, prompts, or LLMs.
-- Performance and simplicity over dev experience or features. Notes not Word, Swift not Elektron.
-- Local first. Core functionality should not require an internet connection.
-- No conversation tracking. Talk about whatever you want with FreeChat, just like Notes.
-- Open source. What's the point of running local AI if you can't audit that it's actually running locally?
+- **Granite-3.3-2B-Instruct** (1.55 GB)
+  - Provider: IBM, Context: 128K
+  - Capabilities: Fast, Reasoning
+  - IBM's Granite 3.3 2B model with extensive context window
 
-### Upgrade your models
+### Medium Models (2-5GB)
+- **Llama-3.2-3B-Instruct** (2.02 GB)
+  - Provider: Meta, Context: 8K
+  - Capabilities: Fast, Reasoning
+  - Meta's Llama 3.2 3B compact model with excellent instruction-following capabilities
 
-Once you're up and running, it's fun to try different models in FreeChat. The AI training community is releasing new models basically every day. FreeChat is compatible with any gguf formatted model that [llama.cpp](https://github.com/ggerganov/llama.cpp) works with.
+- **Phi-4-Mini-3.8B-Instruct** (2.50 GB)
+  - Provider: Microsoft, Context: 128K
+  - Capabilities: Fast, Reasoning
+  - Microsoft's Phi 4 Mini 3.8B model with large context
 
-Models are usually named with their parameter count (e.g. 7B) and are formatted with different levels of lossy compression applied (quantization). The general rule of thumb is that models with more parameters tend to be slower and wiser and more quantization makes it dumber.
+- **Gemma-3-4B-Instruct** (2.49 GB)
+  - Provider: Google, Context: 128K
+  - Capabilities: Multilingual, Creative
+  - Google's Gemma 3 4B instruct-tuned model
 
-To find models, try [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf). Most models have a linked "model card" by the author that discusses its training and abilities.
+- **Granite-3.3-8B-Instruct** (4.94 GB)
+  - Provider: IBM, Context: 128K
+  - Capabilities: Reasoning, Creative
+  - IBM's Granite 3.3 8B model with extended context
 
-## Dev Setup
+### Large Models (5GB+)
+- **Gemma-3-12B-Instruct** (7.30 GB)
+  - Provider: Google, Context: 128K
+  - Capabilities: Multilingual, Creative, Reasoning
+  - Google's Gemma 3 12B model for advanced reasoning tasks
 
-1. Open mac/FreeChat.xcodeproj
-2. Run and fix errors
+- **Mistral-Nemo-12B-Instruct** (7.20 GB)
+  - Provider: NVIDIA, Context: 8K
+  - Capabilities: Reasoning, Coding
+  - NVIDIA's Mistral Nemo 12B instruction model
 
-### Roadmap / TODO (roughly in order):
+- **Phi-4-14B-Instruct** (8.89 GB)
+  - Provider: Microsoft, Context: 128K
+  - Capabilities: Reasoning, Multilingual
+  - Microsoft's Phi 4 14B instruct-tuned model with extensive context handling
 
-- [x] Chat with Llama 3 without installing anything else
-- [x] Try any llama.cpp compatible model
-- [x] Change system prompts to modify personas or expertise
-- [x] Download models from within the app (shrink app from 3GB to 10mb, way better for updates)
-- [x] Advanced settings (prompt format, temperature, repeat penalty)
-- [ ] Personas - save system prompt / model settings for later and change personas when you create a new conversation
-- [ ] Search conversations
+## Model Compatibility
 
-### Contributing
+Besides the built-in models listed above, Local AI GC works with most models in GGUF format. You can add your own models by:
+1. Going to Settings > AI Settings
+2. Clicking "Add or Remove Models..."
+3. Selecting a GGUF file from your computer
 
-Contributions are very welcome. Let's make FreeChat simple and powerful.
+## System Requirements
 
-### Credits
+- macOS 15.0 or later
+- Apple silicon or Intel processor
+- Minimum 4GB RAM (8GB+ recommended for larger models)
+- 4GB+ free disk space (varies by model size)
 
-This project would not be possible without the hard work of:
+## About This Project
 
-- Georgi Gerganov for [llama.cpp](https://github.com/ggerganov/llama.cpp)
-- Meta for training Llama 2
-- Jon Durbin for training Spicyboros, the default model
-- TheBloke (Tom Jobbins) for model quantization
-- Monica Kogler for the FreeChat logo and uncountable UX consults
+Local AI GC is a fork of the FreeChat project, customized to provide a focused, privacy-first AI chat experience. We've updated the interface, optimized performance, and added features while maintaining the core philosophy of keeping all AI processing local.
 
-Also many thanks to Billy Rennekamp, Elliot Hursh, Tomás Savigliano, Judd Schoenholtz, Alex Farrill for invaluable spitballing sessions.
+## Acknowledgements
+
+Local AI GC is built upon [FreeChat](https://github.com/psugihara/FreeChat), created by Peter Sugihara and contributors. The application uses [llama.cpp](https://github.com/ggerganov/llama.cpp) by Georgi Gerganov to run AI models locally.
+
+We extend our gratitude to all the open-source projects that made this application possible:
+- The llama.cpp community
+- FreeChat contributors
+- The creators of the various GGUF models
+
+## License
+
+This software is distributed under the MIT License, the same as the original FreeChat project. 
