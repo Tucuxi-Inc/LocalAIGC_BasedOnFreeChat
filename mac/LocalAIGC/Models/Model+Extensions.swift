@@ -56,7 +56,6 @@ extension Model {
   @available(*, deprecated, message: "use nil instead")
   static let unsetModelId = "unset"
   static let defaultModelUrl = URL(string: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf?download=true")!
-//  static let defaultModelUrl = URL(string: "http://localhost:8080/synthia-7b-v1.5.Q3_K_M.gguf")!
 
   // Collection of default models available for download
   static let defaultModels: [DefaultModel] = [

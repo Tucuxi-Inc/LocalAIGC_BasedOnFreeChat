@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		885E3DE42DC9CE1000747838 /* ModelGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */; };
-		A1156D312AD09FDD00081313 /* PromptTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1156D302AD09FDD00081313 /* PromptTemplateTests.swift */; };
 		A117219C2A7D7B70003B0358 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = A117219B2A7D7B70003B0358 /* MarkdownUI */; };
 		A12B52DE2AA5228100658707 /* EditModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52DD2AA5228100658707 /* EditModels.swift */; };
 		A12B52E42AA5A99E00658707 /* EditSystemPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52E32AA5A99E00658707 /* EditSystemPrompt.swift */; };
@@ -117,7 +116,6 @@
 
 /* Begin PBXFileReference section */
 		885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGalleryView.swift; sourceTree = "<group>"; };
-		A1156D302AD09FDD00081313 /* PromptTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateTests.swift; sourceTree = "<group>"; };
 		A12B52DD2AA5228100658707 /* EditModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModels.swift; sourceTree = "<group>"; };
 		A12B52E32AA5A99E00658707 /* EditSystemPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSystemPrompt.swift; sourceTree = "<group>"; };
 		A12FAAEB2AC5E0C0006ACC43 /* WelcomeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheet.swift; sourceTree = "<group>"; };
@@ -329,7 +327,6 @@
 		A1F6173B2A782AA200F2048C /* LocalAIGCTests */ = {
 			isa = PBXGroup;
 			children = (
-				A1156D302AD09FDD00081313 /* PromptTemplateTests.swift */,
 			);
 			path = LocalAIGCTests;
 			sourceTree = "<group>";
@@ -576,7 +573,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1156D312AD09FDD00081313 /* PromptTemplateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

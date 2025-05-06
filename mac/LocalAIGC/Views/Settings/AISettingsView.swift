@@ -135,7 +135,7 @@ struct AISettingsView: View {
 
       if !editRemoteModel {
         Text(
-          "The default model is general purpose, small, and works on most computers. Larger models are slower but wiser. Some models specialize in certain tasks like coding Python. LocalAIGC is compatible with most models in GGUF format. [Find new models](https://huggingface.co/models?search=GGUF)"
+          "The default model is general purpose, small, and works on most computers. Larger models are slower but wiser. Some models specialize in certain tasks like coding or image generation (though we don't support image generation - yet). LocalAIGC is compatible with most models in GGUF format. [Find new models](https://huggingface.co/models?search=GGUF)"
         )
         .font(.callout)
         .foregroundColor(Color(NSColor.secondaryLabelColor))
