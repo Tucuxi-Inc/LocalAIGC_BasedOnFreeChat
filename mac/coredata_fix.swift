@@ -83,7 +83,7 @@ class PersistenceController {
     
     init() {
         // Handle renamed model
-        NSPersistentContainer.handleModelRename(from: "FreeChat", to: "LocalAIGC")
+        NSPersistentContainer.handleModelRename(from: "LocalAIGC", to: "LocalAIGC")
         
         // Regular container initialization
         container = NSPersistentContainer(name: "LocalAIGC")
