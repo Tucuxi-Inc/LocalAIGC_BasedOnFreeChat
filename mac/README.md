@@ -1,7 +1,7 @@
 # Local AI GC
 
 <div align="center">
-  <img src="FreeChat/Assets.xcassets/AppIcon.appiconset/Local AI GC 512.png" alt="Local AI GC Logo" width="200">
+  <img src="LocalAIGC/Assets.xcassets/AppIcon no shadow.appiconset/Local AI GC 512.png" alt="Local AI GC Logo" width="200">
   <h1>Local AI GC</h1>
   <p><strong>Privacy-First AI Chat for macOS</strong></p>
 </div>
@@ -35,12 +35,64 @@ Local AI GC is a native macOS application that lets you chat with AI models loca
 | Copy Selected Message | ⌘C (with message selected) |
 | Summon Application | Customizable via Preferences |
 
+## Available Models
+
+Local AI GC provides a curated collection of high-quality models that you can download directly within the application. These models are organized by size and capabilities to help you choose the right one for your needs:
+
+### Small Models (1-2GB)
+- **Gemma-3-1B-Instruct** (0.80 GB)
+  - Provider: Google, Context: 128K
+  - Capabilities: Multilingual, Fast
+  - A compact Google model ideal for quick responses with extended context
+
+- **Granite-3.3-2B-Instruct** (1.55 GB)
+  - Provider: IBM, Context: 128K
+  - Capabilities: Fast, Reasoning
+  - IBM's Granite 3.3 2B model with extensive context window
+
+### Medium Models (2-5GB)
+- **Llama-3.2-3B-Instruct** (2.02 GB)
+  - Provider: Meta, Context: 8K
+  - Capabilities: Fast, Reasoning
+  - Meta's Llama 3.2 3B compact model with excellent instruction-following capabilities
+
+- **Phi-4-Mini-3.8B-Instruct** (2.50 GB)
+  - Provider: Microsoft, Context: 128K
+  - Capabilities: Fast, Reasoning
+  - Microsoft's Phi 4 Mini 3.8B model with large context
+
+- **Gemma-3-4B-Instruct** (2.49 GB)
+  - Provider: Google, Context: 128K
+  - Capabilities: Multilingual, Creative
+  - Google's Gemma 3 4B instruct-tuned model
+
+- **Granite-3.3-8B-Instruct** (4.94 GB)
+  - Provider: IBM, Context: 128K
+  - Capabilities: Reasoning, Creative
+  - IBM's Granite 3.3 8B model with extended context
+
+### Large Models (5GB+)
+- **Gemma-3-12B-Instruct** (7.30 GB)
+  - Provider: Google, Context: 128K
+  - Capabilities: Multilingual, Creative, Reasoning
+  - Google's Gemma 3 12B model for advanced reasoning tasks
+
+- **Mistral-Nemo-12B-Instruct** (7.20 GB)
+  - Provider: NVIDIA, Context: 8K
+  - Capabilities: Reasoning, Coding
+  - NVIDIA's Mistral Nemo 12B instruction model
+
+- **Phi-4-14B-Instruct** (8.89 GB)
+  - Provider: Microsoft, Context: 128K
+  - Capabilities: Reasoning, Multilingual
+  - Microsoft's Phi 4 14B instruct-tuned model with extensive context handling
+
 ## Model Compatibility
 
-Local AI GC works with most models in GGUF format. Recommended models include:
-- Llama-3.2-3B-Instruct-Q4_K_M.gguf (default)
-- Mistral-7B-Instruct-v0.1.Q4_K_M.gguf
-- Any other GGUF-formatted models
+Besides the built-in models listed above, Local AI GC works with most models in GGUF format. You can add your own models by:
+1. Going to Settings > AI Settings
+2. Clicking "Add or Remove Models..."
+3. Selecting a GGUF file from your computer
 
 ## System Requirements
 
