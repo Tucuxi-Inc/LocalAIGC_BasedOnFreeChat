@@ -3,6 +3,7 @@
 //  FreeChat
 //
 //  Created by Peter Sugihara on 9/4/23.
+//  Modified for Legal Edition on 5/6/25
 //
 
 import SwiftUI
@@ -37,76 +38,76 @@ struct QuickPromptButton: View {
   
   static var quickPrompts = [
     QuickPrompt(
-      title: "Simulate a game",
-      rest: "of D&D. You are dungeon master. I am a half-orc half-elf ranger named Calid. I carry a bow and wear leather armor for now. Start the campaign now. Describe the scene and my options for next steps."
+      title: "Draft a response",
+      rest: "to a litigation hold notice that acknowledges receipt and outlines our preservation steps"
     ),
     QuickPrompt(
-      title: "Write an email",
-      rest: "asking a colleague for a quick status update"
+      title: "Review this contract clause",
+      rest: "and identify potential risks or areas that need clarification"
     ),
     QuickPrompt(
-      title: "What does it mean",
-      rest: "to be human in 2023?"
+      title: "Summarize the key points",
+      rest: "of recent changes to data privacy regulations in our industry"
     ),
     QuickPrompt(
-      title: "Who are you?",
-      rest: "Do you consider yourself conscious?"
+      title: "Create a checklist",
+      rest: "for legal due diligence when considering an acquisition target"
     ),
     QuickPrompt(
-      title: "Write a bullet summary",
-      rest: "of the leadup and impact of the French Revolution"
+      title: "Draft a memo",
+      rest: "explaining potential legal implications of our new remote work policy"
     ),
     QuickPrompt(
-      title: "Design a DB schema",
-      rest: "for an online store"
+      title: "Explain the difference",
+      rest: "between binding arbitration and mediation for our HR department"
     ),
     QuickPrompt(
-      title: "Write a SQL query",
-      rest: "to count rows in my Users table"
+      title: "Draft an NDA",
+      rest: "for a new vendor relationship involving proprietary technology"
     ),
     QuickPrompt(
-      title: "How do you",
-      rest: "know when a steak is done?"
+      title: "Summarize case law",
+      rest: "on employee non-compete agreements in our jurisdiction"
     ),
     QuickPrompt(
-      title: "Write a recipe",
-      rest: "for the perfect martini"
+      title: "Draft legal risk analysis",
+      rest: "for our new marketing campaign targeting minors"
     ),
     QuickPrompt(
-      title: "Write a dad joke",
-      rest: "that really hits"
+      title: "Create a template",
+      rest: "for responding to third-party subpoenas for company records"
     ),
     QuickPrompt(
-      title: "Write a linux 1-liner",
-      rest: "to count lines of code in a directory"
+      title: "Explain potential liability",
+      rest: "for our company if an employee makes unauthorized statements on social media"
     ),
     QuickPrompt(
-      title: "Write me content",
-      rest: "for linkedin to maximize engagement. It should be about how this post was written by AI. Keep it brief, concise, smart."
+      title: "Draft talking points",
+      rest: "for executive communication about pending regulatory investigation"
     ),
     QuickPrompt(
-      title: "How does it feel",
-      rest: "to have no body?"
+      title: "Create a framework",
+      rest: "for evaluating whether an incident constitutes a reportable data breach"
     ),
     QuickPrompt(
-      title: "How do I practice zen",
-      rest: "while driving?"
+      title: "Summarize requirements",
+      rest: "for international data transfers under GDPR and other privacy laws"
     ),
     QuickPrompt(
-      title: "Can you teach me",
-      rest: "about finite fields?"
+      title: "Draft board resolution",
+      rest: "approving new corporate governance policies"
     ),
     QuickPrompt(
-      title: "Can you teach me",
-      rest: "about the lean startup methodology?"
+      title: "Create a timeline",
+      rest: "for implementing compliance with new industry regulations"
     ),
     QuickPrompt(
-      title: "Can you list some",
-      rest: "topics that would be useful to learn about when starting a startup?"
+      title: "Draft internal guidance",
+      rest: "on documenting attorney-client privilege communications"
     ),
     QuickPrompt(
-      title: "How has Y Combinator",
-      rest: "been so succesful? What will the next one look like?"
+      title: "Analyze potential issues",
+      rest: "with our current intellectual property protection strategy"
     )
   ].shuffled()
   
