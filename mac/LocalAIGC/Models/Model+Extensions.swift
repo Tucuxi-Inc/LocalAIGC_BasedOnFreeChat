@@ -57,99 +57,203 @@ extension Model {
   static let unsetModelId = "unset"
   static let defaultModelUrl = URL(string: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf?download=true")!
 
-  // Collection of default models available for download
-  static let defaultModels: [DefaultModel] = [
+    /// Collection of default models available for download
+    static let defaultModels: [DefaultModel] = [
+      // Original default
       DefaultModel(
-          name: "Llama-3.2-3B-Instruct",
-          url: URL(string: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf")!,
-          size: "2.02 GB",
-          description: "Meta's Llama 3.2 3B is a compact model with excellent instruction-following capabilities. Good balance of speed and intelligence.",
-          category: .medium,
-          capabilities: [.fast, .reasoning],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-07-15T00:00:00Z")!,
-          version: "3.2",
-          provider: "Meta",
-          contextWindow: "8K"
+        name: "Llama-3.2-3B-Instruct",
+        url: URL(string: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf?download=true")!,
+        size: "2.02 GB",
+        description: "Meta's Llama 3.2 3B is a compact model with excellent instruction-following capabilities.",
+        category: .medium,
+        capabilities: [.fast, .reasoning],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-07-15T00:00:00Z")!,
+        version: "3.2",
+        provider: "Meta",
+        contextWindow: "8K"
+      ),
+      // Original models
+      DefaultModel(
+        name: "Llama-3-8B-Instruct",
+        url: URL(string: "https://huggingface.co/bartowski/Llama-3-8B-GGUF/resolve/main/llama-3-8b-instruct-Q4_K_M.gguf?download=true")!,
+        size: "4.37 GB",
+        description: "Meta's 8B parameter model offering deeper reasoning and nuance.",
+        category: .medium,
+        capabilities: [.reasoning, .creative],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-06-25T00:00:00Z")!,
+        version: "3",
+        provider: "Meta",
+        contextWindow: "8K"
       ),
       DefaultModel(
-          name: "Llama-3-8B-Instruct",
-          url: URL(string: "https://huggingface.co/bartowski/Llama-3-8B-GGUF/resolve/main/llama-3-8b-instruct.Q4_K_M.gguf")!,
-          size: "4.37 GB",
-          description: "Meta's 8B parameter model offering better reasoning and more nuanced responses compared to smaller models.",
-          category: .medium,
-          capabilities: [.reasoning, .creative],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-06-25T00:00:00Z")!,
-          version: "3",
-          provider: "Meta",
-          contextWindow: "8K"
+        name: "Phi-3-Mini-4K-Instruct",
+        url: URL(string: "https://huggingface.co/bartowski/phi-3-mini-4k-instruct-GGUF/resolve/main/phi-3-mini-4k-instruct-q4_k_m.gguf?download=true")!,
+        size: "1.91 GB",
+        description: "Microsoft's 3.8B parameter model optimized for instruction-following with 4K context.",
+        category: .small,
+        capabilities: [.fast, .reasoning],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-05-20T00:00:00Z")!,
+        version: "3",
+        provider: "Microsoft",
+        contextWindow: "4K"
       ),
       DefaultModel(
-          name: "Phi-3-Mini-4K-Instruct",
-          url: URL(string: "https://huggingface.co/bartowski/phi-3-mini-4k-instruct-GGUF/resolve/main/phi-3-mini-4k-instruct-q4_k_m.gguf")!,
-          size: "1.91 GB",
-          description: "Microsoft's 3.8B parameter model. Small, fast and optimized for instruction following with 4K context window.",
-          category: .small,
-          capabilities: [.fast, .reasoning],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-05-20T00:00:00Z")!,
-          version: "3",
-          provider: "Microsoft",
-          contextWindow: "4K"
+        name: "TinyLlama-1.1B-Chat",
+        url: URL(string: "https://huggingface.co/bartowski/TinyLlama-1.1B-Chat-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0-Q5_K_M.gguf?download=true")!,
+        size: "0.84 GB",
+        description: "Ultra-lightweight model for basic conversations and simple assistance.",
+        category: .small,
+        capabilities: [.fast],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-04-18T00:00:00Z")!,
+        version: "1.0",
+        provider: "TinyLlama",
+        contextWindow: "2K"
       ),
       DefaultModel(
-          name: "TinyLlama-1.1B-Chat",
-          url: URL(string: "https://huggingface.co/bartowski/TinyLlama-1.1B-Chat-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q5_K_M.gguf")!,
-          size: "0.84 GB",
-          description: "Ultra-lightweight model suitable for low-resource devices. Great for basic conversations and simple assistance.",
-          category: .small,
-          capabilities: [.fast],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-04-18T00:00:00Z")!,
-          version: "1.0",
-          provider: "TinyLlama",
-          contextWindow: "2K"
+        name: "Qwen2-0.5B-Instruct",
+        url: URL(string: "https://huggingface.co/bartowski/Qwen2-0.5B-Instruct-GGUF/resolve/main/qwen2-0.5b-instruct-Q5_K_M.gguf?download=true")!,
+        size: "0.48 GB",
+        description: "Alibaba's tiny model offering surprising capabilities in a tiny package.",
+        category: .small,
+        capabilities: [.fast],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-04-22T00:00:00Z")!,
+        version: "2",
+        provider: "Alibaba",
+        contextWindow: "4K"
       ),
       DefaultModel(
-          name: "Qwen2-0.5B-Instruct",
-          url: URL(string: "https://huggingface.co/bartowski/Qwen2-0.5B-Instruct-GGUF/resolve/main/qwen2-0.5b-instruct.Q5_K_M.gguf")!,
-          size: "0.48 GB",
-          description: "Alibaba's tiny model offering surprising capabilities in a tiny package. Perfect for resource-constrained environments.",
-          category: .small,
-          capabilities: [.fast],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-04-22T00:00:00Z")!,
-          version: "2",
-          provider: "Alibaba",
-          contextWindow: "4K"
+        name: "Mistral-7B-Instruct-v0.2",
+        url: URL(string: "https://huggingface.co/bartowski/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2-Q4_K_M.gguf?download=true")!,
+        size: "3.80 GB",
+        description: "Highly capable open-source model with excellent instruction following.",
+        category: .medium,
+        capabilities: [.reasoning, .creative],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-04-10T00:00:00Z")!,
+        version: "0.2",
+        provider: "Mistral AI",
+        contextWindow: "8K"
       ),
       DefaultModel(
-          name: "Mistral-7B-Instruct-v0.2",
-          url: URL(string: "https://huggingface.co/bartowski/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q4_K_M.gguf")!,
-          size: "3.80 GB",
-          description: "Highly capable open-source model with excellent instruction following and general knowledge.",
-          category: .medium,
-          capabilities: [.reasoning, .creative],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-04-10T00:00:00Z")!,
-          version: "0.2",
-          provider: "Mistral AI",
-          contextWindow: "8K"
+        name: "CodeLlama-7B-Instruct",
+        url: URL(string: "https://huggingface.co/bartowski/CodeLlama-7B-Instruct-GGUF/resolve/main/codellama-7b-instruct-Q4_K_M.gguf?download=true")!,
+        size: "3.83 GB",
+        description: "Meta's specialized model for code generation and understanding programming tasks.",
+        category: .medium,
+        capabilities: [.coding, .reasoning],
+        lastUpdated: ISO8601DateFormatter().date(from: "2024-01-15T00:00:00Z")!,
+        version: "1.0",
+        provider: "Meta",
+        contextWindow: "16K"
+      ),
+      // Newly added models
+      DefaultModel(
+        name: "Granite-3.3-2B-Instruct",
+        url: URL(string: "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct-GGUF/resolve/main/granite-3.3-2b-instruct-Q4_K_M.gguf?download=true")!,
+        size: "1.55 GB",
+        description: "IBM's Granite 3.3 2B model with 128K context window.",
+        category: .small,
+        capabilities: [.fast, .reasoning],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-04-30T00:00:00Z")!,
+        version: "3.3",
+        provider: "IBM",
+        contextWindow: "128K"
       ),
       DefaultModel(
-          name: "CodeLlama-7B-Instruct",
-          url: URL(string: "https://huggingface.co/bartowski/CodeLlama-7B-Instruct-GGUF/resolve/main/codellama-7b-instruct.Q4_K_M.gguf")!,
-          size: "3.83 GB",
-          description: "Meta's specialized model for code generation and understanding programming tasks.",
-          category: .medium,
-          capabilities: [.coding, .reasoning],
-          lastUpdated: ISO8601DateFormatter().date(from: "2024-01-15T00:00:00Z")!,
-          version: "1.0",
-          provider: "Meta",
-          contextWindow: "16K"
-      )
-  ]
+        name: "Granite-3.3-8B-Instruct",
+        url: URL(string: "https://huggingface.co/ibm-granite/granite-3.3-8b-instruct-GGUF/resolve/main/granite-3.3-8b-instruct-Q4_K_M.gguf?download=true")!,
+        size: "4.94 GB",
+        description: "IBM's Granite 3.3 8B model with extended context.",
+        category: .medium,
+        capabilities: [.reasoning, .creative],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-04-30T00:00:00Z")!,
+        version: "3.3",
+        provider: "IBM",
+        contextWindow: "128K"
+      ),
+      DefaultModel(
+        name: "Gemma-3-1B-Instruct",
+        url: URL(string: "https://huggingface.co/unsloth/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q4_K_M.gguf?download=true")!,
+        size: "0.80 GB",
+        description: "Google's Gemma 3 1B instruct-tuned model with extended context.",
+        category: .small,
+        capabilities: [.multilingual, .fast],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-05-01T00:00:00Z")!,
+        version: "3",
+        provider: "Google",
+        contextWindow: "128K"
+      ),
+      DefaultModel(
+        name: "Phi-4-Mini-3.8B-Instruct",
+        url: URL(string: "https://huggingface.co/unsloth/Phi-4-mini-instruct-GGUF/resolve/main/Phi-4-mini-instruct-Q4_K_M.gguf?download=true")!,
+        size: "2.50 GB",
+        description: "Microsoft's Phi 4 Mini 3.8B model with large context.",
+        category: .medium,
+        capabilities: [.fast, .reasoning],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-04-15T00:00:00Z")!,
+        version: "4-mini",
+        provider: "Microsoft",
+        contextWindow: "128K"
+      ),
+      DefaultModel(
+        name: "Gemma-3-4B-Instruct",
+        url: URL(string: "https://huggingface.co/unsloth/gemma-3-4b-it-GGUF/resolve/main/gemma-3-4b-it-Q4_K_M.gguf?download=true")!,
+        size: "2.49 GB",
+        description: "Google's Gemma 3 4B instruct-tuned model.",
+        category: .medium,
+        capabilities: [.multilingual, .creative],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-05-02T00:00:00Z")!,
+        version: "3",
+        provider: "Google",
+        contextWindow: "128K"
+      ),
+      DefaultModel(
+        name: "Gemma-3-12B-Instruct",
+        url: URL(string: "https://huggingface.co/unsloth/gemma-3-12b-it-GGUF/resolve/main/gemma-3-12b-it-Q4_K_M.gguf?download=true")!,
+        size: "7.30 GB",
+        description: "Google's Gemma 3 12B model for advanced reasoning tasks.",
+        category: .large,
+        capabilities: [.multilingual, .creative, .reasoning],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-05-02T00:00:00Z")!,
+        version: "3",
+        provider: "Google",
+        contextWindow: "128K"
+      ),
+      DefaultModel(
+        name: "Mistral-Nemo-12B-Instruct",
+        url: URL(string: "https://huggingface.co/starble-dev/Mistral-Nemo-12B-Instruct-2407-GGUF/resolve/main/Mistral-Nemo-12B-Instruct-2407-Q4_K_M.gguf?download=true")!,
+        size: "7.20 GB",
+        description: "NVIDIA's Mistral Nemo 12B instruction model.",
+        category: .large,
+        capabilities: [.reasoning, .coding],
+        lastUpdated: ISO8601DateFormatter().date(from: "2025-05-03T00:00:00Z")!,
+        version: "2407",
+        provider: "NVIDIA",
+        contextWindow: "8K"
+      ),
+      DefaultModel(
+            name: "Phi-4-14B-Instruct",
+            url: URL(string:
+                "https://huggingface.co/theprint/ReWiz-Phi-4-14B-GGUF/resolve/main/ReWiz-Phi-4-14B.Q4_K_M.gguf?download=true"
+            )!,
+            size: "8.89 GB",
+            description: "Microsoft's Phi 4 14B instruct-tuned model with extensive context handling.",
+            category: .large,
+            capabilities: [.reasoning, .multilingual],
+            lastUpdated: ISO8601DateFormatter().date(from: "2025-04-28T00:00:00Z")!,
+            version: "4",
+            provider: "Microsoft",
+            contextWindow: "128K"
+        )
+    ]
 
   // Backup URLs for specific models in case the primary source is unavailable
   private static let backupURLs: [String: URL] = [
-    "Llama-3.2-3B-Instruct-Q4_K_M.gguf": URL(string: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf")!,
-    "llama-3-8b-instruct.Q4_K_M.gguf": URL(string: "https://huggingface.co/bartowski/Llama-3-8B-GGUF/resolve/main/llama-3-8b-instruct.Q4_K_M.gguf")!,
-    "phi-3-mini-4k-instruct-q4_k_m.gguf": URL(string: "https://huggingface.co/bartowski/phi-3-mini-4k-instruct-GGUF/resolve/main/phi-3-mini-4k-instruct-q4_k_m.gguf")!
+    "Llama-3.2-3B-Instruct-Q4_K_M.gguf": URL(string: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf?download=true")!,
+    "llama-3-8b-instruct.Q4_K_M.gguf": URL(string: "https://huggingface.co/bartowski/Llama-3-8B-GGUF/resolve/main/llama-3-8b-instruct.Q4_K_M.gguf?download=true")!,
+    "phi-3-mini-4k-instruct-q4_k_m.gguf": URL(string: "https://huggingface.co/bartowski/phi-3-mini-4k-instruct-GGUF/resolve/main/phi-3-mini-4k-instruct-q4_k_m.gguf?download=true")!,
+    "ReWiz-Phi-4-14B.Q4_K_M.gguf": URL(string:
+        "https://huggingface.co/theprint/ReWiz-Phi-4-14B-GGUF/resolve/main/ReWiz-Phi-4-14B.Q4_K_M.gguf?download=true"
+    )!
   ]
   
   // Expected SHA-256 hashes for verifying model integrity
@@ -157,9 +261,9 @@ extension Model {
   private static let expectedHashes: [String: String] = [:]
   
   // Method to get a backup URL for a model if available
-  static func getBackupURL(for modelName: String) -> URL? {
-    return backupURLs[modelName]
-  }
+    static func getBackupURL(for modelName: String) -> URL? {
+        return backupURLs[modelName]
+    }
   
   // Method to get the expected hash for a model if available
   static func getExpectedHash(for modelName: String) -> String? {

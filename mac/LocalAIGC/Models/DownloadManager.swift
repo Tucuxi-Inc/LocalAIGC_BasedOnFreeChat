@@ -1,9 +1,7 @@
 //
 //  DownloadManager.swift
 //  LocalAIGC
-//
-//  Created by Peter Sugihara on 9/28/23.
-//
+//  Updated: add debug logging for progress and HTTP redirection
 
 import Foundation
 import OSLog
@@ -129,23 +127,39 @@ class DownloadManager: NSObject, ObservableObject {
 }
 
 extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
-  func urlSession(_: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-    guard totalBytesExpectedToWrite > 0 else { return }
-    
-    let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
-    
-    // Print debug info
-    print("Download progress: \(Int(progress * 100))% - \(totalBytesWritten)/\(totalBytesExpectedToWrite) bytes")
-    
+  // Log redirects
+  func urlSession(_ session: URLSession,
+                  task: URLSessionTask,
+                  willPerformHTTPRedirection response: HTTPURLResponse,
+                  newRequest request: URLRequest,
+                  completionHandler: @escaping (URLRequest?) -> Void) {
+    if let redirectURL = request.url {
+      print("Redirect to: \(redirectURL.absoluteString)")
+    }
+    completionHandler(request)
+  }
+
+  // Enhanced progress logging
+  func urlSession(_ session: URLSession,
+                  downloadTask: URLSessionDownloadTask,
+                  didWriteData bytesWritten: Int64,
+                  totalBytesWritten: Int64,
+                  totalBytesExpectedToWrite: Int64) {
+    let expectedBytes = totalBytesExpectedToWrite > 0 ? totalBytesExpectedToWrite : -1
+    let percentage = totalBytesExpectedToWrite > 0
+      ? Int((Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)) * 100)
+      : 0
+    print("Download progress: \(percentage)% (\(totalBytesWritten)/\(expectedBytes) bytes)")
+    print("Expected total bytes: \(expectedBytes)")
+
     DispatchQueue.main.async {
-      // Post notification for progress update
       if let url = downloadTask.originalRequest?.url {
         NotificationCenter.default.post(
           name: NSNotification.Name("DownloadProgressUpdated"),
           object: nil,
           userInfo: [
             "url": url,
-            "progress": progress,
+            "progress": totalBytesExpectedToWrite > 0 ? Double(totalBytesWritten)/Double(totalBytesExpectedToWrite) : 0,
             "bytesWritten": totalBytesWritten,
             "totalBytes": totalBytesExpectedToWrite
           ]
