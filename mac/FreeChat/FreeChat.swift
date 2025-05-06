@@ -9,7 +9,7 @@ import SwiftUI
 import KeyboardShortcuts
 
 @main
-struct FreeChatApp: App {
+struct LocalAIGCApp: App {
   @NSApplicationDelegateAdaptor(FreeChatAppDelegate.self) private var appDelegate
   @Environment(\.openWindow) var openWindow
   @StateObject var conversationManager = ConversationManager.shared

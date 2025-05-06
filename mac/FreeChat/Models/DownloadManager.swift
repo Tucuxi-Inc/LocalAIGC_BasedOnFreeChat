@@ -57,7 +57,7 @@ class DownloadManager: NSObject, ObservableObject {
   
   private func cleanupExistingFile(for url: URL) {
     let fileName = url.lastPathComponent
-    let folderName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "FreeChat"
+    let folderName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "Local AI GC"
     let destDir = URL.applicationSupportDirectory.appending(path: folderName, directoryHint: .isDirectory)
     let destinationURL = destDir.appending(path: fileName)
     
@@ -198,7 +198,7 @@ extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
 
     // move file to app resources
     let fileName = downloadTask.originalRequest?.url?.lastPathComponent ?? "default.gguf"
-    let folderName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "FreeChat"
+    let folderName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "Local AI GC"
     let destDir = URL.applicationSupportDirectory.appending(path: folderName, directoryHint: .isDirectory)
     let destinationURL = destDir.appending(path: fileName)
 
