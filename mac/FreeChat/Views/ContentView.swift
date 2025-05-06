@@ -31,6 +31,8 @@ struct ContentView: View {
   @State private var showDeleteConfirmation = false
   @State private var showWelcome = false
   @State private var setInitialSelection = false
+  @State private var isServerStarting = false
+  @State private var serverStartProgress = 0.0
 
   var agent: Agent? {
     conversationManager.agent
@@ -88,6 +90,23 @@ struct ContentView: View {
     .sheet(isPresented: $showWelcome) {
       WelcomeSheet(isPresented: $showWelcome)
     }
+    .onChange(of: isServerStarting) { newValue in
+      if newValue {
+        Task {
+          await startServer()
+        }
+      }
+    }
+    .onChange(of: serverStartProgress) { newValue in
+      if newValue == 1.0 {
+        isServerStarting = false
+      }
+    }
+    if isServerStarting {
+      ProgressView("Starting AI model...", value: serverStartProgress, total: 1.0)
+        .progressViewStyle(LinearProgressViewStyle())
+        .padding()
+    }
   }
 
   private func handleModelCountChange(_ nextCount: Int) {
@@ -125,11 +144,23 @@ struct ContentView: View {
     
     try viewContext.save()
   }
+
+  private func startServer() async {
+    isServerStarting = true
+    serverStartProgress = 0.0
+    // Simulate server starting process
+    for _ in 0..<10 {
+      try? await Task.sleep(nanoseconds: 500_000_000) // Wait between 0.5 and 1 seconds
+      serverStartProgress += 0.1
+    }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     let context = PersistenceController.preview.container.viewContext
-    ContentView().environment(\.managedObjectContext, context)
+    ContentView()
+      .environment(\.managedObjectContext, context)
+      .environmentObject(ConversationManager.shared)
   }
 }

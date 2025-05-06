@@ -47,7 +47,7 @@ struct EditModels: View {
           .background(Color.white.opacity(0.0001))
           .fileImporter(
           isPresented: $showFileImporter,
-          allowedContentTypes: [UTType("com.npc-pet.Chats.gguf") ?? .data],
+          allowedContentTypes: [UTType("ai.tucuxi.Chats.gguf") ?? .data],
           allowsMultipleSelection: true,
           onCompletion: importModel
         )

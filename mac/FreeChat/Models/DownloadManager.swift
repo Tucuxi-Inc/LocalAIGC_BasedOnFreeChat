@@ -24,13 +24,13 @@ class DownloadManager: NSObject, ObservableObject {
   override private init() {
     super.init()
 
-    let config = URLSessionConfiguration.background(withIdentifier: "\(Bundle.main.bundleIdentifier!).background2")
-    config.isDiscretionary = false
+    // Using a foreground session instead of a background session to avoid entitlement issues
+    let config = URLSessionConfiguration.default
+    config.timeoutIntervalForRequest = 300 // 5 minutes
+    config.timeoutIntervalForResource = 24 * 60 * 60 // 1 day
+    config.waitsForConnectivity = true
 
-    // Warning: Make sure that the URLSession is created only once (if an URLSession still
-    // exists from a previous download, it doesn't create a new URLSession object but returns
-    // the existing one with the old delegate object attached)
-    urlSession = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue())
+    urlSession = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
 
     updateTasks()
   }
@@ -80,7 +80,7 @@ extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
     do {
       let folderExists = (try? destDir.checkResourceIsReachable()) ?? false
       if !folderExists {
-        try fileManager.createDirectory(at: destDir, withIntermediateDirectories: false)
+        try fileManager.createDirectory(at: destDir, withIntermediateDirectories: true)
       }
       try fileManager.moveItem(at: location, to: destinationURL)
     } catch {

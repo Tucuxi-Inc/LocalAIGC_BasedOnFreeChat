@@ -39,7 +39,7 @@ class ConversationManager: ObservableObject {
 
   func bringConversationToFront(openWindow: OpenWindowAction) {
     // bring conversation window to front
-    if let conversationWindow = NSApp.windows.first(where: { $0.title == currentConversation.titleWithDefault || $0.title == "FreeChat" }) {
+    if let conversationWindow = NSApp.windows.first(where: { $0.title == currentConversation.titleWithDefault || $0.title == "Local AI GC" }) {
       conversationWindow.makeKeyAndOrderFront(self)
     } else {
       // conversation window is not open, so open it

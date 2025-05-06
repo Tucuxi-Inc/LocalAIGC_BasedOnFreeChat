@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct WelcomeSheet: View {
   @FetchRequest(
@@ -26,11 +27,11 @@ struct WelcomeSheet: View {
     VStack {
       if models.count == 0 {
         Image(nsImage: NSImage(named: "AppIcon") ?? NSImage())
-        Text("Welcome to FreeChat").font(.largeTitle)
+        Text("Welcome to Local AI GC").font(.largeTitle)
 
         Text("Download a model to get started")
           .font(.title3)
-        Text("FreeChat runs AI locally on your Mac for maximum privacy and security. You can chat with different AI models, which vary in terms of training data and knowledge base.\n\nThe default model is general purpose, small, and works on most computers. Larger models are slower but wiser. Some models specialize in certain tasks like coding Python. FreeChat is compatible with most models in GGUF format. [Find new models](https://huggingface.co/models?search=GGUF)")
+        Text("Local AI GC runs AI locally on your Mac for maximum privacy and security. You can chat with different AI models, which vary in terms of training data and knowledge base.\n\nThe default model is general purpose, small, and works on most computers. Larger models are slower but wiser. Some models specialize in certain tasks like coding Python. Local AI GC is compatible with most models in GGUF format. [Find new models](https://huggingface.co/models?search=GGUF)")
           .font(.callout)
           .lineLimit(10)
           .fixedSize(horizontal: false, vertical: true)
@@ -97,39 +98,38 @@ struct WelcomeSheet: View {
   }
 }
 
-
-#Preview {
-  @State var isPresented: Bool = true
-  @StateObject var conversationManager = ConversationManager.shared
+struct WelcomeSheet_Previews: PreviewProvider {
+  static var previews: some View {
+    Group {
+      // Default preview
+      WelcomeSheet(isPresented: .constant(true))
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        .environmentObject(ConversationManager.shared)
+        .previewDisplayName("Default")
+      
+      // Success preview - with a model already created
+      SuccessPreview()
+        .previewDisplayName("Success")
+    }
+  }
   
-  return WelcomeSheet(isPresented: $isPresented)
-    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    .environmentObject(conversationManager)
+  // Helper view for the success scenario
+  struct SuccessPreview: View {
+    let context: NSManagedObjectContext
+    
+    init() {
+      self.context = PersistenceController.preview.container.viewContext
+      let m = Model(context: context)
+      m.name = "spicyboros_7b.gguff"
+    }
+    
+    var body: some View {
+      WelcomeSheet(isPresented: .constant(true))
+        .environment(\.managedObjectContext, context)
+        .environmentObject(ConversationManager.shared)
+    }
+  }
 }
 
-#Preview("Success") {
-  @State var isPresented: Bool = true
-  @StateObject var conversationManager = ConversationManager.shared
-  
-  let ctx = PersistenceController.preview.container.viewContext
-  let m = Model(context: ctx)
-  m.name = "spicyboros_7b.gguff"
-  
-  return WelcomeSheet(isPresented: $isPresented)
-    .environment(\.managedObjectContext, ctx)
-    .environmentObject(conversationManager)
-}
-
-// works but generates deprecation warning
-//#Preview("Loading") {
-//  @State var isPresented: Bool = true
-//  @StateObject var conversationManager = ConversationManager.shared
-//
-//  let ctx = PersistenceController.preview.container.viewContext
-//
-//  DownloadManager.shared.tasks.append(URLSessionTask())
-//
-//  return WelcomeSheet(isPresented: $isPresented)
-//    .environment(\.managedObjectContext, ctx)
-//    .environmentObject(conversationManager)
-//}
+// Note: Replaced the newer #Preview macros with traditional PreviewProvider
+// as @Previewable is only available in macOS 14.0 or newer
