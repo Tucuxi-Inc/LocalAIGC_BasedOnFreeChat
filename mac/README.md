@@ -1,7 +1,7 @@
 # Local AI GC
 
 <div align="center">
-  <img src="LocalAIGC/Assets.xcassets/AppIcon no shadow.appiconset/Local AI GC 512.png" alt="Local AI GC Logo" width="200">
+  <img src="LocalAIGC/Assets.xcassets/AppIcon.appiconset/Local%20AI%20GC%20512.png" alt="Local AI GC Logo" width="200">
   <h1>Local AI GC</h1>
   <p><strong>Privacy-First AI Chat for macOS</strong></p>
 </div>
