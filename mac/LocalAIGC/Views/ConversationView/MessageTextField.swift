@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Speech
+import AVFoundation
 
 struct ChatStyle: TextFieldStyle {
   @Environment(\.colorScheme) var colorScheme
@@ -44,6 +46,7 @@ struct BlurredView: NSViewRepresentable {
 
 struct MessageTextField: View {
   @State var input: String = ""
+  @StateObject private var speechManager = SpeechRecognitionManager()
 
   @EnvironmentObject var conversationManager: ConversationManager
   var conversation: Conversation { conversationManager.currentConversation }
@@ -52,6 +55,9 @@ struct MessageTextField: View {
   @State var showNullState = false
 
   @FocusState private var focused: Bool
+  
+  // Animation properties for the mic button
+  @State private var isAnimating = false
 
   var nullState: some View {
     ScrollView(.horizontal, showsIndicators: false) {
@@ -63,36 +69,113 @@ struct MessageTextField: View {
 
     }.frame(maxWidth: .infinity)
   }
+  
+  // Microphone button view
+  var microphoneButton: some View {
+    Button(action: {
+      if speechManager.isRecording {
+        speechManager.stopRecording()
+      } else {
+        speechManager.startRecording()
+      }
+    }) {
+      Image(systemName: speechManager.isRecording ? "mic.fill" : "mic.slash.fill")
+        .font(.system(size: 18))
+        .foregroundColor(speechManager.isRecording ? .red : .blue)
+        .frame(width: 30, height: 30)
+        .background(
+          Circle()
+            .fill(Color.secondary.opacity(0.1))
+            .scaleEffect(isAnimating ? 1.1 : 1.0)
+        )
+        .overlay(
+          Circle()
+            .stroke(speechManager.isRecording ? Color.red : Color.blue, lineWidth: 1.5)
+            .scaleEffect(isAnimating ? 1.1 : 1.0)
+        )
+    }
+    .buttonStyle(PlainButtonStyle())
+    .padding(.leading, 10)
+    .opacity(speechManager.isAuthorized ? 1.0 : 0.5)
+    .disabled(!speechManager.isAuthorized)
+    .help(speechManager.isAuthorized ? 
+          (speechManager.isRecording ? "Stop voice input" : "Start voice input") : 
+          "Speech recognition not authorized")
+    .onAppear {
+      startAnimation()
+    }
+  }
+  
+  private func startAnimation() {
+    guard speechManager.isRecording else { return }
+    
+    withAnimation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
+      isAnimating = true
+    }
+  }
+  
+  private func stopAnimation() {
+    isAnimating = false
+  }
 
   var inputField: some View {
     Group {
-      TextField("Message", text: $input, axis: .vertical)
+      HStack(spacing: 0) {
+        // Microphone button
+        microphoneButton
+        
+        // Text field
+        TextField("Message", text: Binding(
+          get: { 
+            // If recording, show the transcribed text
+            speechManager.isRecording ? speechManager.transcribedText : input
+          },
+          set: { newValue in
+            // Only update our input if not recording
+            if !speechManager.isRecording {
+              input = newValue
+            }
+          }
+        ), axis: .vertical)
         .onSubmit {
-        if CGKeyCode.kVK_Shift.isPressed {
-          input += "\n"
-        } else if input.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
-          onSubmit(input)
-          input = ""
+          if CGKeyCode.kVK_Shift.isPressed {
+            input += "\n"
+          } else if input.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
+            onSubmit(input)
+            input = ""
+          }
         }
-      }
         .focused($focused)
         .textFieldStyle(ChatStyle(focused: focused))
         .submitLabel(.send)
         .padding(.all, 10)
         .onAppear {
-        self.focused = true
-      }
-        .onChange(of: conversation) { nextConversation in
-        if conversationManager.showConversation() {
           self.focused = true
-          QuickPromptButton.quickPrompts.shuffle()
+        }
+        .onChange(of: conversation) { nextConversation in
+          if conversationManager.showConversation() {
+            self.focused = true
+            QuickPromptButton.quickPrompts.shuffle()
+          }
         }
       }
     }
-      .background(BlurredView().ignoresSafeArea())
-
+    .background(BlurredView().ignoresSafeArea())
+    .alert(speechManager.errorMessage, isPresented: $speechManager.showErrorAlert) {
+      Button("OK", role: .cancel) {}
+    }
+    // When recording stops, update the input field with the transcribed text
+    .onChange(of: speechManager.isRecording) { isRecording in
+      if isRecording {
+        startAnimation()
+      } else {
+        stopAnimation()
+        if !speechManager.transcribedText.isEmpty {
+          input = speechManager.transcribedText
+        }
+      }
+    }
   }
-
 
   var body: some View {
     let messages = conversation.messages
@@ -106,8 +189,6 @@ struct MessageTextField: View {
     }
   }
 }
-
-
 
 //#if DEBUG
 //struct MessageTextField_Previews: PreviewProvider {

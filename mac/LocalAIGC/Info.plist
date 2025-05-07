@@ -63,5 +63,9 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LocalAIGC needs access to your microphone to convert your voice to text for chat input.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>LocalAIGC needs access to speech recognition to convert your voice to text for chat input.</string>
 </dict>
 </plist>
