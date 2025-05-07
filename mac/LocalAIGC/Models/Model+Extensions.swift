@@ -169,7 +169,7 @@ extension Model {
             version: "4",
             provider: "Microsoft",
             contextWindow: "128K"
-        )
+        ),
     ]
 
   // Backup URLs for specific models in case the primary source is unavailable

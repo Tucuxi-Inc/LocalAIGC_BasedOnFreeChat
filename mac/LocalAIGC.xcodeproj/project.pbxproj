@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		885E3DE42DC9CE1000747838 /* ModelGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */; };
+		885E3DED2DCB14E000747838 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E3DEC2DCB14E000747838 /* SpeechRecognitionManager.swift */; };
 		A117219C2A7D7B70003B0358 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = A117219B2A7D7B70003B0358 /* MarkdownUI */; };
 		A12B52DE2AA5228100658707 /* EditModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52DD2AA5228100658707 /* EditModels.swift */; };
 		A12B52E42AA5A99E00658707 /* EditSystemPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52E32AA5A99E00658707 /* EditSystemPrompt.swift */; };
@@ -116,6 +117,7 @@
 
 /* Begin PBXFileReference section */
 		885E3DE32DC9CE1000747838 /* ModelGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGalleryView.swift; sourceTree = "<group>"; };
+		885E3DEC2DCB14E000747838 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		A12B52DD2AA5228100658707 /* EditModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModels.swift; sourceTree = "<group>"; };
 		A12B52E32AA5A99E00658707 /* EditSystemPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSystemPrompt.swift; sourceTree = "<group>"; };
 		A12FAAEB2AC5E0C0006ACC43 /* WelcomeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheet.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		A1F617592A7838DB00F2048C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				885E3DEC2DCB14E000747838 /* SpeechRecognitionManager.swift */,
 				A17A2E1B2A79A00D006CDD90 /* NPC */,
 				A1F617572A7836AE00F2048C /* Message+Extensions.swift */,
 				A1F6175A2A7838F700F2048C /* Conversation+Extensions.swift */,
@@ -536,6 +539,7 @@
 				A1F6175B2A7838F700F2048C /* Conversation+Extensions.swift in Sources */,
 				DEA8CF572B51938B007A4CE7 /* LocalAIGCAppDelegate.swift in Sources */,
 				A13C8C622A8FF27000EC18D8 /* Theme+LocalAIGC.swift in Sources */,
+				885E3DED2DCB14E000747838 /* SpeechRecognitionManager.swift in Sources */,
 				A1F6172F2A782AA200F2048C /* Persistence.swift in Sources */,
 				A12B52E42AA5A99E00658707 /* EditSystemPrompt.swift in Sources */,
 				A19AA5222AA667BE009D9573 /* QuickPromptButton.swift in Sources */,
@@ -779,7 +783,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LocalAIGC/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "LocalAIGC";
+				INFOPLIST_KEY_CFBundleDisplayName = LocalAIGC;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = NO;
@@ -790,7 +794,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ai.tucuxi.LocalAIGC";
+				PRODUCT_BUNDLE_IDENTIFIER = ai.tucuxi.LocalAIGC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -816,7 +820,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LocalAIGC/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "LocalAIGC";
+				INFOPLIST_KEY_CFBundleDisplayName = LocalAIGC;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = NO;
@@ -827,7 +831,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ai.tucuxi.LocalAIGC";
+				PRODUCT_BUNDLE_IDENTIFIER = ai.tucuxi.LocalAIGC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
